@@ -42,3 +42,13 @@ class BaseModel:
     def to_dict(self):
         """
         returns the dictionary representation of the base model.
+        """
+        result = {}
+
+        for key, value in self.__dict__.items():
+            if key == "created_at" or key == "updated_at":
+                result[key] = value.isoformat()
+            else:
+                result[key] = value
+        result["__class__"] = self.__class__.__name__
+        return result
