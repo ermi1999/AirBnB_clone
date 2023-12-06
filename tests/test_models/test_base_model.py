@@ -18,4 +18,18 @@ class TestBaseModel(unittest.TestCase):
         base = BaseModel()
         self.assertIsInstance(base.to_dict(), dict)
 
+        def test_save(self):
+        base = BaseModel()
+        temp_date = base.updated_at
+        base.save()
+        self.assertNotEqual(base.updated_at, temp_date)
+
+    def test_str(self):
+        base = BaseModel()
+        self.assertIsInstance(base.__str__(), str)
+
+
+if __name__ == "__main__":
+    unittest.main()
+
 
