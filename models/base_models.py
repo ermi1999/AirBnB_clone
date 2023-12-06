@@ -31,3 +31,14 @@ class BaseModel:
         returns the string representation of the base_model object.
         """
         return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
+
+    def save(self):
+        """
+        updates the base model.
+        """
+        self.updated_at = datetime.now()
+        storage.save()
+
+    def to_dict(self):
+        """
+        returns the dictionary representation of the base model.
