@@ -13,3 +13,9 @@ class TestBaseModel(unittest.TestCase):
     def test_id(self):
         base = BaseModel()
         self.assertIsInstance(base.id, str)
+
+        def test_to_dict(self):
+        base = BaseModel()
+        self.assertIsInstance(base.to_dict(), dict)
+
+
