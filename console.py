@@ -3,6 +3,7 @@
 This is the command interpreter for hbnb.
 """
 import cmd
+import json
 from models import storage
 from models.base_model import BaseModel
 from models.user import User
@@ -25,6 +26,7 @@ class HBNBCommand(cmd.Cmd):
         overides the default behavior to handle some commands.
         """
         list_methods = ["all", "count", "destroy", "show", "update"]
+        list_static_methods = ["count", "all"]
         if line:
             arg = line
             if '.' in arg and '(' in arg and ')' in arg:
@@ -39,18 +41,35 @@ class HBNBCommand(cmd.Cmd):
                             if instance_method in list_methods:
                                 arg = arg[1]
                                 arg = arg[:-1]
-                                if instance_method == "count" or instance_method == "all":
+                                if instance_method in list_static_methods:
                                     instance_method = "self.{}".format(instance_method)
                                 else:
                                     instance_method = "self.do_{}".format(instance_method)
-                                if arg:
-                                    arg = arg.replace('"', '')
-                                    arg = arg.replace(',', '')
-                                    arg = "{} {}".format(class_name, arg)
-                                    eval(instance_method) (arg)
+                                if arg and arg[-1:] == '}':
+                                    arg = arg.split(',', 1)
+                                    if len(arg) == 2:
+                                        id = arg[0]
+                                        id = id.replace('"', '')
+                                        id = id.replace("'", "")
+                                        dictionary = arg[1]
+                                        try:
+                                            dictionary = dictionary.replace("'", '"')
+                                            dictionary = json.loads(dictionary)
+                                            for key, value in dictionary.items():
+                                                arg = "{} {} {} {}".format(class_name, id, key, value)
+                                                eval(instance_method) (arg)
+                                            return
+                                        except Exception as e:
+                                            pass
                                 else:
-                                    eval(instance_method) (class_name)
-                                return
+                                    if arg:
+                                        arg = arg.replace('"', '')
+                                        arg = arg.replace('"', '')
+                                        arg = "{} {}".format(class_name, arg)
+                                        eval(instance_method) (arg)
+                                    else:
+                                        eval(instance_method) (class_name)
+                                    return
         super().default(line)
 
     @staticmethod
