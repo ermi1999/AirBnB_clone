@@ -18,7 +18,8 @@ class HBNBCommand(cmd.Cmd):
     """
     This is the command interpreter for hbnb.
     """
-    __classes = ["BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]
+    __classes = ["BaseModel", "User", "State",
+                 "City", "Amenity", "Place", "Review"]
     prompt = "(hbnb) "
 
     def default(self, line):
@@ -42,9 +43,11 @@ class HBNBCommand(cmd.Cmd):
                                 arg = arg[1]
                                 arg = arg[:-1]
                                 if instance_method in list_static_methods:
-                                    instance_method = "self.{}".format(instance_method)
+                                    instance_method = "self.{}".format(
+                                        instance_method)
                                 else:
-                                    instance_method = "self.do_{}".format(instance_method)
+                                    instance_method = "self.do_{}".format(
+                                        instance_method)
                                 if arg and arg[-1:] == '}':
                                     arg = arg.split(',', 1)
                                     if len(arg) == 2:
@@ -53,11 +56,13 @@ class HBNBCommand(cmd.Cmd):
                                         id = id.replace("'", "")
                                         dictionary = arg[1]
                                         try:
-                                            dictionary = dictionary.replace("'", '"')
+                                            dictionary = dictionary.replace(
+                                                    "'", '"')
                                             dictionary = json.loads(dictionary)
-                                            for key, value in dictionary.items():
-                                                arg = "{} {} {} {}".format(class_name, id, key, value)
-                                                eval(instance_method) (arg)
+                                            for k, val in dictionary.items():
+                                                arg = "{} {} {} {}".format(
+                                                        class_name, id, k, val)
+                                                eval(instance_method)(arg)
                                             return
                                         except Exception as e:
                                             pass
@@ -66,9 +71,9 @@ class HBNBCommand(cmd.Cmd):
                                         arg = arg.replace('"', '')
                                         arg = arg.replace('"', '')
                                         arg = "{} {}".format(class_name, arg)
-                                        eval(instance_method) (arg)
+                                        eval(instance_method)(arg)
                                     else:
-                                        eval(instance_method) (class_name)
+                                        eval(instance_method)(class_name)
                                     return
         super().default(line)
 
@@ -107,7 +112,7 @@ class HBNBCommand(cmd.Cmd):
             arg = args[0]
             if arg in self.__classes:
                 all_obj = storage.all()
-                new_class = eval(arg) ()
+                new_class = eval(arg)()
                 new_class.save()
                 print(new_class.id)
             else:
@@ -121,7 +126,6 @@ class HBNBCommand(cmd.Cmd):
         """
         print("creates a new instance of BaseModel\nsaves it to JSON file.\n")
         print("ARGS:\n\t1. The class name.")
-
 
     def do_show(self, line):
         """
@@ -146,12 +150,13 @@ class HBNBCommand(cmd.Cmd):
                     print("** instance id missing **")
         else:
             print("** class name missing **")
-    
+
     def help_show(self):
         """
         prints help for show.
         """
-        print("Prints the string representation of an instance based on the class name and id.")
+        print("Prints the string representation of an instance based on" +
+              "the class name and id.")
         print("ARGS:\n\t1. class name\n\t2. class id to be printed.")
 
     def do_quit(self, line):
@@ -227,7 +232,8 @@ class HBNBCommand(cmd.Cmd):
         """
         prints the help for all.
         """
-        print("Prints all string representation of all instances based or not on the class name.\nArgs:\
+        print("Prints all string representation of all instances" +
+              "based or not on the class name.\nArgs:\
                 \n\t1. class name (optional)")
 
     def do_update(self, line):
@@ -255,8 +261,8 @@ class HBNBCommand(cmd.Cmd):
                                 if isinstance(args[3], str):
                                     value = args[3].replace('"', '')
                                 if hasattr(instance, attr):
-                                    previous_type = type(getattr(instance, attr))
-                                    value = previous_type(args[3])
+                                    type = type(getattr(instance, attr))
+                                    value = type(args[3])
                                 setattr(instance, attr, value)
                                 storage.save()
                             else:
@@ -276,9 +282,10 @@ class HBNBCommand(cmd.Cmd):
         """
         prints help for update.
         """
-        print("Updates an instance based on the class name and id by adding or updating attribute.\nARGS:\
-                \n\t1. class name\n\t2. the id of the object\n\t3. attribute name\n\t4. attribute value")
-
+        print("Updates an instance based on the class name \
+              and id by adding or updating attribute.\nARGS:\
+                \n\t1. class name\n\t2. the id of the object\n\t3. attribute" +
+              " name\n\t4. attribute value")
 
     def do_EOF(self, line):
         """
@@ -293,6 +300,6 @@ class HBNBCommand(cmd.Cmd):
         """
         pass
 
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
-

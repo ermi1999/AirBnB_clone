@@ -10,4 +10,3 @@ class State(BaseModel):
     This class defines the state model for Airbnb clone.
     """
     name = ""
-

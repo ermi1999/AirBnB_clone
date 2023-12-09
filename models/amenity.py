@@ -10,4 +10,3 @@ class Amenity(BaseModel):
     This class defines the Amenity model for hbnb
     """
     name = ""
-

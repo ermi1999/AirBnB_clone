@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
-This class serializes instances to a JSON file and deserializes JSON file to instances.
+This class serializes instances to a JSON file and
+deserializes JSON file to instances.
 """
 import json
 
@@ -43,7 +44,8 @@ class FileStorage:
 
     def reload(self):
         """
-        deserializes the JSON file to __objects (only if the JSON file (__file_path)
+        deserializes the JSON file to __objects
+        (only if the JSON file (__file_path)
         """
         from models.base_model import BaseModel
         from models.user import User
@@ -59,7 +61,6 @@ class FileStorage:
             for value in data.values():
                 class_name = value["__class__"]
                 del value["__class__"]
-                self.new(eval(class_name) (**value))
+                self.new(eval(class_name)(**value))
         except FileNotFoundError:
             pass
-
