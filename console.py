@@ -69,7 +69,7 @@ class HBNBCommand(cmd.Cmd):
                                 else:
                                     if arg:
                                         arg = arg.replace('"', '')
-                                        arg = arg.replace('"', '')
+                                        arg = arg.replace(',', '')
                                         arg = "{} {}".format(class_name, arg)
                                         eval(instance_method)(arg)
                                     else:
@@ -261,8 +261,8 @@ class HBNBCommand(cmd.Cmd):
                                 if isinstance(args[3], str):
                                     value = args[3].replace('"', '')
                                 if hasattr(instance, attr):
-                                    type = type(getattr(instance, attr))
-                                    value = type(args[3])
+                                    _typ = type(getattr(instance, attr))
+                                    value = _typ(args[3])
                                 setattr(instance, attr, value)
                                 storage.save()
                             else:
