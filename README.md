@@ -18,6 +18,7 @@ is a command interpreter to manage the clone.
 - to delete a specific model instance use destroy
 	Usage:
 		```destroy <model name> <instance id>```
+
 - all Prints all string representation of all instances based or not on the class name.
 	Usage:
 		```all <model name>``` or ```all```
