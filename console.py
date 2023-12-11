@@ -179,12 +179,7 @@ class HBNBCommand(cmd.Cmd):
         all_obj = storage.all()
         if len(args) > 0:
             class_name = args[0]
-            found = 0
-            for obj in all_obj.values():
-                if class_name == obj.__class__.__name__:
-                    found = 1
-                    break
-            if found:
+            if class_name in self.__classes:
                 if len(args) > 1:
                     id = args[1]
                     obj_id = "{}.{}".format(class_name, id)
@@ -245,12 +240,7 @@ class HBNBCommand(cmd.Cmd):
         all_obj = storage.all()
         if len(args) > 0:
             class_name = args[0]
-            found = 0
-            for obj in all_obj.values():
-                if class_name == obj.__class__.__name__:
-                    found = 1
-                    break
-            if found:
+            if class_name in self.__classes:
                 if len(args) > 1:
                     id = "{}.{}".format(class_name, args[1])
                     if id in all_obj.keys():
