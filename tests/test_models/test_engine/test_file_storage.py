@@ -107,3 +107,11 @@ class TestBaseModel(unittest.TestCase):
         self.assertIn("City." + city.id, objects)
         self.assertIn("Review." + review.id, objects)
         self.assertIn("Amenity." + amenity.id, objects)
+
+    def test_reload_with_arg(self):
+        with self.assertRaises(TypeError):
+            models.storage.reload(None)
+
+    def test_save_with_arg(self):
+        with self.assertRaises(TypeError):
+            models.storage.save(None)
