@@ -90,3 +90,15 @@
 	font-weight: bold;
 }
 
+.places .amenities {
+	margin-top: 40px;
+}
+
+.places .amenities h2 {
+	font-size: 16px;
+	border-bottom: 1px solid #DDDDDD;
+}
+
+.places .amenities ul {
+	list-style: none;
+}
