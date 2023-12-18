@@ -92,6 +92,8 @@
 
 .places .amenities {
 	margin-top: 40px;
+	margin-right: auto;
+	width: 100%;
 }
 
 .places .amenities h2 {
@@ -101,4 +103,59 @@
 
 .places .amenities ul {
 	list-style: none;
+	padding-left: 0;
+}
+
+.places .amenities ul li {
+	display: flex;
+	align-items: center;
+	flex-direction: row;
+	gap: 10px;
+}
+
+.tv {
+	background-image: url(../images/icon_tv.png);
+	width: 30px;
+        height: 30px;
+	background-size: cover;
+}
+
+.pets {
+	background-image: url(../images/icon_pets.png);
+	width: 30px;
+        height: 30px;
+	background-size: cover;
+}
+
+.wifi {
+	background-image: url(../images/icon_wifi.png);
+	width: 30px;
+        height: 30px;
+	background-size: cover;
+}
+
+.reviews {
+	margin-top: 40px;
+	margin-right: auto;
+	width: 100%;
+}
+
+.reviews h2 {
+	font-size: 16px;
+	border-bottom: 1px solid #DDDDDD;
+}
+
+.reviews ul {
+	list-style: none;
+	padding-left: 0;
+}
+
+.reviews ul li h3 {
+	font-size: 14px;
+	margin-bottom: 0;
+}
+
+.reviews ul li p {
+	font-size: 12px;
+	margin-top: 0;
 }
