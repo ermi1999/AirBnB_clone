@@ -9,7 +9,7 @@ is a command interpreter to manage the clone.
 
 - create a new instance of a model.
 	Usage:
-		```bash
+		```
         create <Model Name>
         ```
 
