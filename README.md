@@ -36,4 +36,5 @@ is a command interpreter to manage the clone.
 		```
         update <class name> <id> <attribute name> "<attribute value>"
         ```
-
+- tests folder contains all test files
+- web_static forlder contains the html and css files
